@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="light-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SZAVKN</title>
+    <link rel="icon" href="https://imgur.com/a/1YJMnjJ" type="image/png">
+    <style>
+        /* Color mode variables */
+        :root {
+            --bg-color: #f9fafb;
+            --card-bg: white;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --heading-color: #111827;
+            --text-color: #6b7280;
+            --section-bg: #f9fafb;
+            --title-color: #1f2937;
+        }
+
+        .dark-mode {
+            --bg-color: #1f2937;
+            --card-bg: #111827;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            --heading-color: #f3f4f6;
+            --text-color: #d1d5db;
+            --section-bg: #374151;
+            --title-color: #e5e7eb;
+        }
+
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        /* Main container */
+        .maintenance-container {
+            width: 100%;
+            max-width: 28rem;
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: var(--card-shadow);
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Theme toggle button */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--section-bg);
+            color: var(--text-color);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--section-bg);
+            color: var(--heading-color);
+        }
+
+        .theme-toggle svg {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Icon container */
+        .icon-container {
+            background-color: #fef3c7;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        /* Heading and text */
+        h1 {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+        }
+
+        .description {
+            margin-top: 0.5rem;
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Estimated time section */
+        .estimated-time {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            color: var(--text-color);
+            font-size: 0.875rem;
+        }
+
+        /* Contact section */
+        .contact-section {
+            background-color: var(--section-bg);
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--title-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Contact buttons */
+        .contact-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: white;
+            transition: all 0.2s ease;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+
+        .discord-button {
+            background-color: #5865F2;
+        }
+
+        .discord-button:hover {
+            background-color: #4752C4;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 1.5rem;
+            font-size: 0.75rem;
+            color: var(--text-color);
+        }
+
+        /* Icons */
+        .icon {
+            display: inline-block;
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .icon-sm {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="maintenance-container">
+        <!-- Theme toggle button -->
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" id="moonIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="sunIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+        </button>
+
+        <div class="icon-container">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#d97706">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </div>
+        
+        <h1>Site em manutenção</h1>
+       
+        <div class="estimated-time">
+            <svg class="icon-sm" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Voltamos em breve</span>
+        </div>
+        
+        <div class="contact-section">
+            <h3 class="contact-title">Fique ligado quando estivermos online:</h3>
+  <div class="contact-buttons" style="display: flex; justify-content: center; gap: 15px; margin-top: 15px;">
+    <a href="https://www.instagram.com/szavkn/" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="contact-button instagram-button" 
+       style="
+         display: flex; 
+         align-items: center; 
+         gap: 8px; 
+         padding: 10px 15px; 
+         border-radius: 12px; 
+         background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); 
+         color: white; 
+         text-decoration: none; 
+         font-weight: 500;
+         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); 
+         transition: transform 0.2s ease, box-shadow 0.2s ease;
+       "
+       onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(0,0,0,0.3)'"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)'">
+       
+      <svg class="icon-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+        <path d="M7.5 2C4.462 2 2 4.462 2 7.5v9C2 19.538 4.462 22 7.5 22h9c3.038 0 5.5-2.462 5.5-5.5v-9C22 4.462 19.538 2 16.5 2h-9zm0 2h9A3.5 3.5 0 0120 7.5v9a3.5 3.5 0 01-3.5 3.5h-9A3.5 3.5 0 014 16.5v-9A3.5 3.5 0 017.5 4zm9.25 1.75a.75.75 0 100 1.5.75.75 0 000-1.5zM12 7a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6z"/>
+      </svg>
+      Instagram
+    </a>
+            </div>
+        </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            const moonIcon = document.getElementById('moonIcon');
+            const sunIcon = document.getElementById('sunIcon');
+            
+            // Check for saved theme preference or use default light mode
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                html.classList.remove('light-mode');
+                html.classList.add('dark-mode');
+                moonIcon.style.display = 'none';
+                sunIcon.style.display = 'block';
+            }
+            
+            // Toggle theme when button is clicked
+            themeToggle.addEventListener('click', function() {
+                if (html.classList.contains('dark-mode')) {
+                    // Switch to light mode
+                    html.classList.remove('dark-mode');
+                    html.classList.add('light-mode');
+                    moonIcon.style.display = 'block';
+                    sunIcon.style.display = 'none';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    // Switch to dark mode
+                    html.classList.remove('light-mode');
+                    html.classList.add('dark-mode');
+                    moonIcon.style.display = 'none';
+                    sunIcon.style.display = 'block';
+                    localStorage.setItem('theme', 'dark');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
